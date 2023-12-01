@@ -5,15 +5,19 @@ import logging
 logger = logging.getLogger(__name__)
 logging.basicConfig(level = logging.INFO)
 
+from functions.get_file_contents import GetFileContents
+
 # -------
 class AOC_App(object):
 
     def __init__(self):
-        pass
+        self.input_file = None
+
     # -------
     def run(self):
         try:
-
+            file_contents_list = self.get_file_contents( self.input_file )
+            print( file_contents )
             return True
         except Exception as ex:
             logger.exception( ex )
@@ -21,6 +25,10 @@ class AOC_App(object):
 
     def execute(self, ):
         pass
+
+    def get_file_contents( self, file_path ):
+        file_contents_obj = GetFileContents( file_path )
+        return file_contents_obj.read_file()
 
     # -------
     def parse_args(self, args):
