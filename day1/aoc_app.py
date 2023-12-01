@@ -27,7 +27,8 @@ class AOC_App( object ):
 
     def execute( self, file_contents_list ):
         trebuchet_obj = Trebuchet( file_contents_list )
-        trebuchet_obj.get_coordinates()
+        trebuchet_obj.set_calibration_value()
+        print( trebuchet_obj.get_calibration_value() )
 
     def get_file_contents( self, file_path ):
         file_contents_obj = GetFileContents( file_path )
