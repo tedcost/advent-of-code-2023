@@ -18,15 +18,16 @@ class AOC_App( object ):
     def run( self ):
         try:
             file_contents_list = self.get_file_contents( self.input_file )
-            trebuchet_obj = Trebuchet( file_contents_list )
-            trebuchet_obj._get_coordinates()
+            self.execute( file_contents_list )
             return True
+
         except Exception as ex:
             logger.exception( ex )
             return False
 
-    def execute( self, ):
-        pass
+    def execute( self, file_contents_list ):
+        trebuchet_obj = Trebuchet( file_contents_list )
+        trebuchet_obj.get_coordinates()
 
     def get_file_contents( self, file_path ):
         file_contents_obj = GetFileContents( file_path )
