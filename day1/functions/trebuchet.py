@@ -7,6 +7,7 @@ class Trebuchet:
 
         self.coordinate_list = coordinate_list
         self.coordinate_generator = None
+        self.coordinate_sum_running_total = 0
 
     # -------
     def get_coordinates( self ):
@@ -15,13 +16,11 @@ class Trebuchet:
 
     def get_integers( self ):
         for coordinate in self.coordinate_generator:
-            print( self.get_first_last_int( self._get_integers( coordinate ) ) )
+            self.coordinate_sum_running_total += self._get_first_last_int( self._get_integers( coordinate ) )
 
     def set_coordinates_generator( self ):
         self.coordinate_generator = self._get_coordinates_generator()
 
-    def get_first_last_int( self, int_list ):
-        return self._get_first_last_int( int_list )
 
     # -------
     def _get_coordinates_generator( self ):
@@ -38,4 +37,4 @@ class Trebuchet:
         return int_list
 
     def _get_first_last_int( self, int_list ):
-        return int_list[0] + int_list[-1]
+        return int( int_list[0] + int_list[-1] )
