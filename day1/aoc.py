@@ -1,7 +1,7 @@
 import sys
 import os
 import logging
-logger = logging.getLogger(__name__)
+logger = logging.getLogger( __name__ )
 
 from aoc_app import AOC_App
 
@@ -12,6 +12,6 @@ if __name__ == '__main__':
 	app.validate_args()
 
 	if app.run():
-		sys.exit(0)
+		sys.exit( 0 )
 	else:
-		sys.exit(1)
+		sys.exit( 1 )
