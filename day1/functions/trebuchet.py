@@ -10,15 +10,15 @@ class Trebuchet:
         self.calibration_value_running_total = 0
         self.calibration_string_value_running_total = 0
         self.string_int_dict = [
-            { 'string':'one', 'int': '1' },
-            { 'string':'two', 'int': '2' },
-            { 'string':'three', 'int': '3' },
-            { 'string':'four', 'int': '4' },
-            { 'string':'five', 'int': '5' },
-            { 'string':'six', 'int': '6' },
-            { 'string':'seven', 'int': '7' },
-            { 'string':'eight', 'int': '8' },
-            { 'string':'nine', 'int': '9' }
+            { 'string':'nine', 'int': 'n9e' },
+            { 'string':'eight', 'int': 'e8t' },
+            { 'string':'seven', 'int': 's7n' },
+            { 'string':'six', 'int': 's6x' },
+            { 'string':'five', 'int': 'f5e' },
+            { 'string':'four', 'int': 'f4r' },
+            { 'string':'three', 'int': 't3e' },
+            { 'string':'two', 'int': 't2o' },
+            { 'string':'one', 'int': 'o1e' }
         ]
 
     # -------
@@ -70,12 +70,11 @@ class Trebuchet:
         return int_list
 
     def _replace_string_ints( self, coordinate ):
-        temp_coordinate = coordinate
         for i in self.string_int_dict:
-            if i['string'] in temp_coordinate:
-                temp_coordinate = temp_coordinate.replace( i['string'], i['int'] )
+            if i['string'] in coordinate:
+                coordinate = coordinate.replace( i['string'], i['int'] )
 
-        return temp_coordinate
+        return coordinate
 
     def _get_first_last_int( self, int_list ):
         return int( int_list[0] + int_list[-1] )
