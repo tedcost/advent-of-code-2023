@@ -3,6 +3,12 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+
+.DS_Store
+__pycache__
+Pipfile.lock
+
+
 # C extensions
 *.so
 
@@ -17,8 +23,7 @@ eggs/
 lib/
 lib64/
 parts/
-sdist/
-var/
+sdis
 wheels/
 share/python-wheels/
 *.egg-info/
