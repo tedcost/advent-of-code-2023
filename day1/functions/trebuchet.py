@@ -8,6 +8,18 @@ class Trebuchet:
         self.coordinate_list = coordinate_list
         self.coordinate_generator = None
         self.calibration_value_running_total = 0
+        self.calibration_string_value_running_total = 0
+        self.string_int_dict = [
+            { 'string':'one', 'int': '1' },
+            { 'string':'two', 'int': '2' },
+            { 'string':'three', 'int': '3' },
+            { 'string':'four', 'int': '4' },
+            { 'string':'five', 'int': '5' },
+            { 'string':'six', 'int': '6' },
+            { 'string':'seven', 'int': '7' },
+            { 'string':'eight', 'int': '8' },
+            { 'string':'nine', 'int': '9' }
+        ]
 
     # -------
     def set_calibration_value( self ):
@@ -18,11 +30,30 @@ class Trebuchet:
         self.coordinate_generator = self._get_coordinates_generator()
 
     def get_integers( self ):
+        integers_list = []
+        string_integers_list = []
+
         for coordinate in self.coordinate_generator:
-            self.calibration_value_running_total += self._get_first_last_int( self._get_integers( coordinate ) )
+            integers_list = self._get_integers( coordinate )
+            self.calibration_value_running_total += self._get_first_last_int( integers_list )
+
+            string_integers_list = self._get_integers( self._replace_string_ints( coordinate ) )
+            self.calibration_string_value_running_total += self._get_first_last_int( string_integers_list )
+
+            print(coordinate)
+            print(integers_list)
+            print(self.calibration_value_running_total)
+            print(string_integers_list)
+            print(self.calibration_string_value_running_total)
+            print('\n')
 
     def get_calibration_value( self ):
         return self._get_calibration_value()
+
+    def get_calibration_string_value( self ):
+        return self._get_calibration_string_value()
+
+
 
     # -------
     def _get_coordinates_generator( self ):
@@ -38,8 +69,19 @@ class Trebuchet:
 
         return int_list
 
+    def _replace_string_ints( self, coordinate ):
+        temp_coordinate = coordinate
+        for i in self.string_int_dict:
+            if i['string'] in temp_coordinate:
+                temp_coordinate = temp_coordinate.replace( i['string'], i['int'] )
+
+        return temp_coordinate
+
     def _get_first_last_int( self, int_list ):
         return int( int_list[0] + int_list[-1] )
 
     def _get_calibration_value( self ):
         return self.calibration_value_running_total
+
+    def _get_calibration_string_value( self ):
+        return self.calibration_string_value_running_total
