@@ -6,7 +6,7 @@ logger = logging.getLogger( __name__ )
 logging.basicConfig( level = logging.INFO )
 
 from functions.get_file_contents import GetFileContents
-from functions.cube_game import CubeGame
+from functions.cube_game_controller import CubeGameController
 
 # -------
 class AOC_App( object ):
@@ -29,7 +29,10 @@ class AOC_App( object ):
             return False
 
     def execute( self, file_contents_list ):
-        pass
+        for game in file_contents_list:
+            cube_controller = CubeGameController( game )
+            print( cube_controller.get_sets() )
+            print( cube_controller.get_game() )
 
     def get_file_contents( self, file_path ):
         file_contents_obj = GetFileContents( file_path )
