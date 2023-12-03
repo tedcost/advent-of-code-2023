@@ -4,7 +4,6 @@ logger = logging.getLogger( __name__ )
 class Set:
 
     def __init__( self, set_data ):
-        print(set_data)
         self.set_data = set_data
         self.blue_count = 0
         self.red_count = 0

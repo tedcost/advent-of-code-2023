@@ -17,6 +17,8 @@ class AOC_App( object ):
         self.red_cube_count = 0
         self.green_cube_count = 0
 
+        self.acceptable_game_count = 0
+
     # -------
     def run( self ):
         try:
@@ -32,12 +34,20 @@ class AOC_App( object ):
         for game in file_contents_list:
             cube_controller = CubeGameController( game )
             cube_controller.load_sets()
+            cube_controller.set_max_colors()
+
             print( cube_controller.get_sets() )
-            #print( cube_controller.get_game() )
+            print( cube_controller.get_game() )
             
             #cube_controller.print_sets()
-            cube_controller.set_max_colors()
-            cube_controller.print_max_colors()
+            #cube_controller.print_max_colors()
+
+            if cube_controller.blue_max <= self.blue_cube_count and \
+                cube_controller.red_max <= self.red_cube_count and \
+                cube_controller.green_max <= self.green_cube_count:
+                    self.acceptable_game_count += cube_controller.get_game()
+
+            print( self.acceptable_game_count )
 
     def get_file_contents( self, file_path ):
         file_contents_obj = GetFileContents( file_path )
@@ -80,3 +90,7 @@ class AOC_App( object ):
         assert self.blue_cube_count.isdigit(), "Cube count must be an integer!"
         assert self.red_cube_count.isdigit(), "Cube count must be an integer!"
         assert self.green_cube_count.isdigit(), "Cube count must be an integer!"
+
+        self.blue_cube_count = int( self.blue_cube_count )
+        self.red_cube_count = int( self.red_cube_count )
+        self.green_cube_count = int( self.green_cube_count )

@@ -55,4 +55,4 @@ class CubeGameController:
         return self.set_data.split(';')
 
     def _get_game( self ):
-        return self.game_data
+        return int( self.game_data )
