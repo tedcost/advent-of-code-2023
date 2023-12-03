@@ -15,25 +15,43 @@ class CubeGameController:
         self.game_data = self.game_data.split( 'Game' )[1]
         self.set_list = []
 
+        self.blue_max = 0
+        self.red_max = 0
+        self.green_max = 0
+
     # -------
-    def print_sets( self ):
-        return self._print_sets()
+    def get_sets( self ):
+        return self._get_sets()
 
     def get_game( self ):
         return self._get_game()
 
     def load_sets( self ):
-        for game_set in self.print_sets():
+        for game_set in self.get_sets():
             self.set_list.append( Set( game_set ) )
 
-    def get_sets( self ):
+    def print_sets( self ):
         for game_set in self.set_list:
-            print('Blue: %s' %  game_set.get_blue_count() )
-            print('Red: %s' %  game_set.get_blue_count() )
-            print('Green: %s' %  game_set.get_blue_count() )
+            print('Blue: %s' % game_set.get_blue_count() )
+            print('Red: %s' % game_set.get_red_count() )
+            print('Green: %s' % game_set.get_green_count() )
+
+    def print_max_colors( self ):
+        print('Blue: %s' % self.blue_max )
+        print('Red: %s' % self.red_max )
+        print('Green: %s' % self.green_max )
+
+    def set_max_colors( self ):
+        for game_set in self.set_list:
+            if game_set.get_blue_count() > self.blue_max:
+                self.blue_max = game_set.get_blue_count()
+            if game_set.get_red_count() > self.red_max:
+                self.red_max = game_set.get_red_count()
+            if game_set.get_green_count() > self.green_max:
+                self.green_max = game_set.get_green_count()
 
     # -------
-    def _print_sets( self ):
+    def _get_sets( self ):
         return self.set_data.split(';')
 
     def _get_game( self ):

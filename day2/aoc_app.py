@@ -32,10 +32,12 @@ class AOC_App( object ):
         for game in file_contents_list:
             cube_controller = CubeGameController( game )
             cube_controller.load_sets()
-            print( cube_controller.print_sets() )
+            print( cube_controller.get_sets() )
             #print( cube_controller.get_game() )
             
-            cube_controller.get_sets()
+            #cube_controller.print_sets()
+            cube_controller.set_max_colors()
+            cube_controller.print_max_colors()
 
     def get_file_contents( self, file_path ):
         file_contents_obj = GetFileContents( file_path )

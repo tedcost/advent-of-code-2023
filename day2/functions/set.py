@@ -24,8 +24,8 @@ class Set:
                 self.green_count = game_set.split( 'green' )[0]
 
     def get_blue_count( self ):
-        return self.blue_count
+        return int( self.blue_count )
     def get_red_count( self ):
-        return self.red_count
+        return int( self.red_count )
     def get_green_count( self ):
-        return self.green_count
+        return int( self.green_count )
