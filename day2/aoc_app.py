@@ -18,6 +18,7 @@ class AOC_App( object ):
         self.green_cube_count = 0
 
         self.acceptable_game_count = 0
+        self.game_power_count = 0
 
     # -------
     def run( self ):
@@ -48,6 +49,10 @@ class AOC_App( object ):
                     self.acceptable_game_count += cube_controller.get_game()
 
             print( self.acceptable_game_count )
+            print( cube_controller.get_game_power() )
+            self.game_power_count += cube_controller.get_game_power()
+
+        print( self.game_power_count )
 
     def get_file_contents( self, file_path ):
         file_contents_obj = GetFileContents( file_path )

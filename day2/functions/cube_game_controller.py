@@ -26,6 +26,9 @@ class CubeGameController:
     def get_game( self ):
         return self._get_game()
 
+    def get_game_power( self ):
+        return self.blue_max * self.red_max * self.green_max
+
     def load_sets( self ):
         for game_set in self.get_sets():
             self.set_list.append( Set( game_set ) )
