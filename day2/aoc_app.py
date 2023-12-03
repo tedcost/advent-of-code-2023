@@ -31,8 +31,11 @@ class AOC_App( object ):
     def execute( self, file_contents_list ):
         for game in file_contents_list:
             cube_controller = CubeGameController( game )
-            print( cube_controller.get_sets() )
-            print( cube_controller.get_game() )
+            cube_controller.load_sets()
+            print( cube_controller.print_sets() )
+            #print( cube_controller.get_game() )
+            
+            cube_controller.get_sets()
 
     def get_file_contents( self, file_path ):
         file_contents_obj = GetFileContents( file_path )
