@@ -40,8 +40,10 @@ class Engine:
 
     def find_valid_components( self ):
         part_counter = 0
+        gear_counter = 0
+
         for index_part, part in enumerate( self.part_list ):
-            print( part.print_components() )
+            print ( part.print_components())
             for index_comp, component in enumerate ( part.print_components() ):
                 if component.isnumeric() == False and component != '.':
 
@@ -52,28 +54,26 @@ class Engine:
                     for i in line_data:
                         try:
                             result = self.get_entire_number( self.part_list[ index_part + i].component_list[ index_comp - 1], index_comp - 1, self.part_list[ index_part + i].component_list )
-                            print( result, end="")
                             if result.isnumeric(): event_adder.append( int( result ) )
                         except:
                             pass
                         try:
                             result = self.get_entire_number( self.part_list[ index_part + i].component_list[ index_comp ], index_comp, self.part_list[ index_part + i].component_list )
-                            print( result, end="")
                             if result.isnumeric(): event_adder.append( int( result ) )
                         except:
                             pass
                         try:
                             result = self.get_entire_number( self.part_list[ index_part + i].component_list[ index_comp + 1], index_comp + 1, self.part_list[ index_part + i].component_list ) 
-                            print( result )
                             if result.isnumeric(): event_adder.append( int( result ) )
                         except:
                             pass
-
-                    print( "ayo: %d" % self.adjacent_part_counter )
-
                     print (event_adder)
-                    print (self.remove_event_dupes( event_adder ))
 
-                    part_counter += sum(self.remove_event_dupes(event_adder))
+                    part_counter += sum( self.remove_event_dupes( event_adder ) )
+                    if component == '*' and len( self.remove_event_dupes( event_adder ) ) == 2:
+                        print('hello')
+                        print (self.remove_event_dupes( event_adder ) )
+                        gear_counter += ( self.remove_event_dupes( event_adder )[0] * self.remove_event_dupes( event_adder )[1] )
 
-            print (part_counter)
+            print ( "part_counter:", part_counter )
+            print ( "gear_counter:", gear_counter )
