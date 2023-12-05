@@ -17,8 +17,9 @@ class Part:
         return self.component_list
 
     def add_component( self ):
-        indv_part_list = re.split( '([^a-zA-Z0-9])', self.part_data )
-        #print( indv_part_list )
+        #indv_part_list = re.split( '([^a-zA-Z0-9])', self.part_data )
+        indv_part_list = list( self.part_data )
+
         self.component_list = [ i for i in indv_part_list if i != '' ]
 
         for index, item in enumerate( indv_part_list ):
