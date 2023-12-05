@@ -47,65 +47,28 @@ class Engine:
 
                     event_adder = []
 
-                    # Previous Line
-                    if ( index_part - 1 ) >= 0:
+                    line_data = [ -1, 0, 1 ]
+
+                    for i in line_data:
                         try:
-                            result = self.get_entire_number( self.part_list[ index_part - 1].component_list[ index_comp - 1], index_comp - 1, self.part_list[ index_part - 1].component_list )
+                            result = self.get_entire_number( self.part_list[ index_part + i].component_list[ index_comp - 1], index_comp - 1, self.part_list[ index_part + i].component_list )
                             print( result, end="")
                             if result.isnumeric(): event_adder.append( int( result ) )
                         except:
                             pass
                         try:
-                            result = self.get_entire_number( self.part_list[ index_part - 1].component_list[ index_comp ], index_comp, self.part_list[ index_part - 1].component_list )
+                            result = self.get_entire_number( self.part_list[ index_part + i].component_list[ index_comp ], index_comp, self.part_list[ index_part + i].component_list )
                             print( result, end="")
                             if result.isnumeric(): event_adder.append( int( result ) )
                         except:
                             pass
                         try:
-                            result = self.get_entire_number( self.part_list[ index_part - 1].component_list[ index_comp + 1], index_comp + 1, self.part_list[ index_part - 1].component_list ) 
+                            result = self.get_entire_number( self.part_list[ index_part + i].component_list[ index_comp + 1], index_comp + 1, self.part_list[ index_part + i].component_list ) 
                             print( result )
                             if result.isnumeric(): event_adder.append( int( result ) )
                         except:
                             pass
 
-                    # Current Line
-                    try:
-                        result = self.get_entire_number( self.part_list[ index_part ].component_list[ index_comp - 1], index_comp - 1, self.part_list[ index_part ].component_list )
-                        print( result, end="")
-                        if result.isnumeric(): event_adder.append( int( result ) )
-                    except:
-                        pass
-                    try:
-                        print( part.component_list[ index_comp ], end="" )
-                    except:
-                        pass
-                    try:
-                        result = self.get_entire_number( self.part_list[ index_part ].component_list[ index_comp + 1], index_comp + 1, self.part_list[ index_part ].component_list )
-                        print( result )
-                        if result.isnumeric(): event_adder.append( int( result ) )
-                    except:
-                        pass
-
-                    # Future Line
-                    if ( index_part + 1 ) <= len( self.part_list ):
-                        try:
-                            result = self.get_entire_number( self.part_list[ index_part + 1].component_list[ index_comp - 1], index_comp - 1, self.part_list[ index_part + 1].component_list )
-                            print( result, end="")
-                            if result.isnumeric(): event_adder.append( int( result ) )
-                        except:
-                            pass
-                        try:
-                            result = self.get_entire_number( self.part_list[ index_part + 1].component_list[ index_comp ], index_comp, self.part_list[ index_part + 1].component_list )
-                            print( result, end="")
-                            if result.isnumeric(): event_adder.append( int( result ) )
-                        except:
-                            pass
-                        try:
-                            result = self.get_entire_number( self.part_list[ index_part + 1].component_list[ index_comp + 1], index_comp + 1, self.part_list[ index_part + 1].component_list )
-                            print( result )
-                            if result.isnumeric(): event_adder.append( int( result ) )
-                        except:
-                            pass
                     print( "ayo: %d" % self.adjacent_part_counter )
 
                     print (event_adder)
