@@ -6,8 +6,9 @@ logger = logging.getLogger( __name__ )
 class Part:
 
     def __init__( self, part_data ):
-        self.part_data = part_data
+        self.part_data = part_data.rstrip()
         self.component_list = []
+        self.component_data_list = []
 
         self.add_component()
 
@@ -16,9 +17,9 @@ class Part:
         return self.component_list
 
     def add_component( self ):
-
         indv_part_list = re.split( '([^a-zA-Z0-9])', self.part_data )
-        indv_part_list= [ i for i in indv_part_list if i != '' ]
+        #print( indv_part_list )
+        self.component_list = [ i for i in indv_part_list if i != '' ]
 
         for index, item in enumerate( indv_part_list ):
             if item != '.':
@@ -26,4 +27,9 @@ class Part:
                 component[ 'position' ] = index
                 component[ 'item' ] = item
 
-                self.component_list.append( component)
+                if item.isnumeric():
+                    component[ 'numeric' ] = True
+                else:
+                    component[ 'numeric' ] = False
+
+                self.component_data_list.append( component)

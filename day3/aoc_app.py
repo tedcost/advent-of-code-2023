@@ -30,7 +30,8 @@ class AOC_App( object ):
 
         for part in file_contents_list:
             engine.add_part( part )
-        engine.print_parts()
+        #engine.print_parts()
+        engine.find_valid_components()
 
     def get_file_contents( self, file_path ):
         file_contents_obj = GetFileContents( file_path )
