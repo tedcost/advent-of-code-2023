@@ -35,31 +35,44 @@ class Engine:
 
         return starting_int
 
+    def remove_event_dupes( self, dupe_list ):
+        return list( set( dupe_list ) )
 
     def find_valid_components( self ):
+        part_counter = 0
         for index_part, part in enumerate( self.part_list ):
             print( part.print_components() )
             for index_comp, component in enumerate ( part.print_components() ):
                 if component.isnumeric() == False and component != '.':
 
+                    event_adder = []
+
                     # Previous Line
                     if ( index_part - 1 ) >= 0:
                         try:
-                            print ( self.get_entire_number( self.part_list[ index_part - 1].component_list[ index_comp - 1], index_comp - 1, self.part_list[ index_part - 1].component_list ), end=""  )
+                            result = self.get_entire_number( self.part_list[ index_part - 1].component_list[ index_comp - 1], index_comp - 1, self.part_list[ index_part - 1].component_list )
+                            print( result, end="")
+                            if result.isnumeric(): event_adder.append( int( result ) )
                         except:
                             pass
                         try:
-                            print ( self.get_entire_number( self.part_list[ index_part - 1].component_list[ index_comp ], index_comp, self.part_list[ index_part - 1].component_list ), end=""  )
+                            result = self.get_entire_number( self.part_list[ index_part - 1].component_list[ index_comp ], index_comp, self.part_list[ index_part - 1].component_list )
+                            print( result, end="")
+                            if result.isnumeric(): event_adder.append( int( result ) )
                         except:
                             pass
                         try:
-                            print ( self.get_entire_number( self.part_list[ index_part - 1].component_list[ index_comp + 1], index_comp + 1, self.part_list[ index_part - 1].component_list ) )
+                            result = self.get_entire_number( self.part_list[ index_part - 1].component_list[ index_comp + 1], index_comp + 1, self.part_list[ index_part - 1].component_list ) 
+                            print( result )
+                            if result.isnumeric(): event_adder.append( int( result ) )
                         except:
                             pass
 
                     # Current Line
                     try:
-                        print ( self.get_entire_number( self.part_list[ index_part ].component_list[ index_comp - 1], index_comp - 1, self.part_list[ index_part ].component_list ), end=""  )
+                        result = self.get_entire_number( self.part_list[ index_part ].component_list[ index_comp - 1], index_comp - 1, self.part_list[ index_part ].component_list )
+                        print( result, end="")
+                        if result.isnumeric(): event_adder.append( int( result ) )
                     except:
                         pass
                     try:
@@ -67,24 +80,37 @@ class Engine:
                     except:
                         pass
                     try:
-                        print ( self.get_entire_number( self.part_list[ index_part ].component_list[ index_comp + 1], index_comp + 1, self.part_list[ index_part ].component_list ))
+                        result = self.get_entire_number( self.part_list[ index_part ].component_list[ index_comp + 1], index_comp + 1, self.part_list[ index_part ].component_list )
+                        print( result )
+                        if result.isnumeric(): event_adder.append( int( result ) )
                     except:
                         pass
 
                     # Future Line
                     if ( index_part + 1 ) <= len( self.part_list ):
                         try:
-                            print ( self.get_entire_number( self.part_list[ index_part + 1].component_list[ index_comp - 1], index_comp - 1, self.part_list[ index_part + 1].component_list ), end=""  )
+                            result = self.get_entire_number( self.part_list[ index_part + 1].component_list[ index_comp - 1], index_comp - 1, self.part_list[ index_part + 1].component_list )
+                            print( result, end="")
+                            if result.isnumeric(): event_adder.append( int( result ) )
                         except:
                             pass
                         try:
-                            print ( self.get_entire_number( self.part_list[ index_part + 1].component_list[ index_comp ], index_comp, self.part_list[ index_part + 1].component_list ), end=""  )
+                            result = self.get_entire_number( self.part_list[ index_part + 1].component_list[ index_comp ], index_comp, self.part_list[ index_part + 1].component_list )
+                            print( result, end="")
+                            if result.isnumeric(): event_adder.append( int( result ) )
                         except:
                             pass
                         try:
-                            print ( self.get_entire_number( self.part_list[ index_part + 1].component_list[ index_comp + 1], index_comp + 1, self.part_list[ index_part + 1].component_list ))
+                            result = self.get_entire_number( self.part_list[ index_part + 1].component_list[ index_comp + 1], index_comp + 1, self.part_list[ index_part + 1].component_list )
+                            print( result )
+                            if result.isnumeric(): event_adder.append( int( result ) )
                         except:
                             pass
                     print( "ayo: %d" % self.adjacent_part_counter )
 
+                    print (event_adder)
+                    print (self.remove_event_dupes( event_adder ))
 
+                    part_counter += sum(self.remove_event_dupes(event_adder))
+
+            print (part_counter)
